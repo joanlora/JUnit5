@@ -2,6 +2,7 @@ package rxwriter.drug;
 
 import rxwriter.drug.database.DrugDatabase;
 import rxwriter.drug.database.DrugRecord;
+import rxwriter.drug.database.DrugSource;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -9,6 +10,11 @@ import java.util.List;
 
 public class DrugService {
 
+    private DrugSource drugSource;
+
+    public DrugService(DrugSource drugSource){
+        this.drugSource = drugSource;
+    }
     public List<DispensableDrug> findDrugsStartingWith(String startsWith) {
         if (startsWith == null || startsWith.isBlank() || startsWith.trim().length() <2) {
             throw new IllegalArgumentException("Starts with string must be non-null, non-blank, " +
