@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DurationUnitTest {
+class DurationUnitTest { // test in ide then test in terminal then upload to repo
 
     @Test
     public void matchUnitBySingularString() {
