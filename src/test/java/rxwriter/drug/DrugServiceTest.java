@@ -25,4 +25,20 @@ class DrugServiceTest {
                 () -> service.findDrugsStartingWith(" "));
         System.out.println(thrown.getMessage());
     }
+
+    @Test
+    void setsDrugPropertiesCorrectly() {
+        DrugService service = new DrugService();
+        List<DispensableDrug> foundDrugs = service.findDrugsStartingWith("aspirin");
+        DrugClassification[] expectedClassifications = new DrugClassification[]{
+                DrugClassification.ANALGESIC, DrugClassification.PLATELET_AGGREGATION_INHIBITORS
+        };
+        DispensableDrug drug = foundDrugs.get(0);
+        assertAll("Dispensable properties",
+                () -> assertEquals("aspirin", drug.drugName()),
+                () -> assertFalse(drug.isControlled()),
+                () -> assertEquals(2, drug.drugClassifications().length),
+                () -> assertArrayEquals(expectedClassifications, drug.drugClassifications())
+        );
+    }
 }
